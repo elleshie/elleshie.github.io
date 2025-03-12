@@ -1,0 +1,106 @@
+
+  *::before,
+  *::after {
+  box-sizing: border-box;
+  }
+
+  h6 {
+    font-family: 'Times New Roman', Times, serif;
+    color: #000;
+  }
+
+  .my-4 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .section-title::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 0;
+    top: 50%;
+    left: 0;
+    border-top: 1px dashed #bec5cb;
+    z-index: -1;
+  }  
+
+  .position-relative {
+    position: relative !important;
+  }
+
+  .px-3 {
+    padding-right: 1rem !important;
+  }
+
+  .mx-xl-5 {
+    margin-left: 3rem !important;
+  }
+
+  .grid-container img {
+    width: 100%; /* Makes the image take the full width of the grid cell */
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Ensures images don’t get distorted */
+  }
+
+  /* Grid Layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  z-index: 10;
+  position: relative;
+  padding: 1em;
+}
+
+/* Each Grid Item */
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+  z-index: 5;
+}
+
+/* Hover Zoom Effect */
+.grid-item:hover {
+  transform: scale(1.05);
+}
+
+/* Main Image */
+.grid-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: opacity 0.3s;
+}
+
+/* Hidden Gallery (Appears on Hover) */
+.hover-gallery {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  overflow-y: auto;
+}
+
+.hover-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Show Mini-Gallery on Hover (Desktop Only) */
+@media (hover: hover) {
+  .grid-item:hover .hover-gallery {
+    opacity: 1;
+  }
+}
+
+

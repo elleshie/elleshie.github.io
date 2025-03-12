@@ -1,0 +1,257 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    background-color: #F5F5F5;
+}
+
+nav {
+	background-color: rgb(247, 237, 237);
+	padding-right: 1em;
+    margin-bottom: 1em;
+	position: static;
+}
+
+nav ul {
+	display: flex;
+	justify-content: flex-end;
+	gap: 1em;
+	list-style-type: none;
+}
+
+nav ul li:first-child {
+	margin-right: auto; /* Pushes first item to the left */
+	padding: 0.5em;
+}
+
+nav ul li:not(:first-child) {
+    padding-top: 2em; 
+}
+
+nav ul li a {
+    position: relative;
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+	padding: 0 1em;
+	font-size: 1.5em;
+}
+
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+nav ul li a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    width: 4em;
+    height: 3em;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    position: fixed;
+    top: 1em;
+    right: 1em;
+    z-index: 1001;
+}
+
+.menu-btn span {
+    width: 100%;
+    height: 5px;
+    background-color: black;
+    border-radius: 5px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* When sidebar is open, morph into "X" */
+.menu-btn.active span:nth-child(1) {
+    transform: translateY(12px) rotate(45deg);
+}
+.menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-btn.active span:nth-child(3) {
+    transform: translateY(-12px) rotate(-45deg);
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -35%;  /* Hidden by default */
+    width: 30%;
+    height: 100vh;
+    background-color: #222;
+    padding: 0;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+	overflow-y: auto;
+}
+
+/* Sidebar links */
+.sidebar ul {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+    list-style: none;
+    padding: 1em;
+    margin: 0;
+}
+
+.sidebar ul li {
+	margin: 0;
+}
+
+.sidebar ul li a {
+    color: white;
+	padding: 1em;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+nav .sidebar.active li a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+nav .sidebar.active li a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* When sidebar is open */
+.sidebar.active {
+    position: fixed;
+    right: 0;
+    padding-top: 4em; /* Pushes content down to avoid collision */
+    z-index: 1000 !important;
+    opacity: 1 !important;
+}
+
+
+
+ @media (max-width: 800px){
+	.hideOnMobile{
+		display: none;
+	}
+
+	.sidebar.active {
+		width: 40%;
+        z-index: 1000 !important;
+        opacity: 1 !important;
+	}
+	
+}
+@media (max-width: 300px){
+	.sidebar.active{
+		width: 100%;
+	}	
+} 
+
+@media (min-width: 800px) {
+	.hideOnLscreen{
+		display: none;
+	}
+}
+
+
+footer {
+    background-color: rgb(17, 16, 16);
+    color: #fff;
+    height: 100px;
+    position: relative;
+    height: 100px;
+}
+
+.modal {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.show {
+    display: block;
+    transform: translate(-50%, -50%) scale(1); /* Grows to full size */
+    opacity: 1;
+}
+
+
+/* Modal Content */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Form Inputs */
+input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+
+/* Active Modal */
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+button[type="submit"] {
+	padding: 0.7em;
+}  
+
+
